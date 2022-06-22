@@ -1,9 +1,25 @@
 import React from 'react';
+import ListItem from './ListItem';
 
-const ShopList = () => {
+const ShopList = ({flowers}) => {
+
+    const flowerNodes = flowers.map((flower, index) => {
+        return <ListItem flower={flower} key={index} />
+      
+    })
+
+   
 
     return (
-        <h4>This is shop list</h4>
+        <>
+        <ul>
+
+        {flowerNodes}
+
+        </ul>
+           
+        </>
+        
     );
 };
 
