@@ -22,13 +22,22 @@ const ShopList = ({flowers, onAddFlower, userBasket}) => {
 
     if (userBasket) {
 
+    
+
         const basketNodes = userBasket.map((item, index) => {
             return <li key={index}>{item.name}'s price is {item.price}</li>
         })
 
+        const totalPrice = userBasket.reduce((runningTotal, currentValue) => {
+                    return runningTotal += currentValue.price
+            
+
+        }, 0)
+
         return (
             <>
             {basketNodes}
+            <p> Total Price: £{totalPrice}</p>
             </>
         )
     }
