@@ -1,6 +1,8 @@
-import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
 import React, {useState} from 'react';
 import ShopList from '../components/ShopList';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Heading from '../components/Heading';
+import NavBar from '../components/NavBar';
 
 const ShopContainer = () => {
 
@@ -13,7 +15,7 @@ const ShopContainer = () => {
 
     ])
 
-    const [userList, setUserList] = useState([]);
+    const [userList, setUserList] = useState([{name: "sausage", price: 3}]);
 
     // const [selectedFlower, setSelectedFlower] = useState(null);
 
@@ -23,13 +25,15 @@ const ShopContainer = () => {
         setUserList(userListCopy);
     }
 
-
-
     return (
-        <>
-        <h1>I am the container!!!</h1>
-        <ShopList flowers={shopListItems} onAddFlower={onAddFlower}/>
-        </>
+        <Router>
+            <Heading/>
+            <NavBar/>
+            <Routes>            
+                <Route path="/" element={<ShopList flowers={shopListItems} onAddFlower={onAddFlower}/>} />
+                <Route path="/basket" element={<ShopList userBasket={userList} />} />
+            </Routes>
+        </Router>
     )
 };
 
